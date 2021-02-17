@@ -29,11 +29,4 @@ public class JsonToCSVService {
         response.setContentLength(report.length);
         response.getOutputStream().write(report);
     }
-   // setHeader("isikukood", " ", " ", "tasu kood", "tasu määr", "kogus", " ", "osakond")
-
-
-
-
-
-
 }
