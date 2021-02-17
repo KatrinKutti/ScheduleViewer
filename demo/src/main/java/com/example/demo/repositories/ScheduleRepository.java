@@ -144,11 +144,13 @@ public class ScheduleRepository {
                         getScheduleReport.get(i)== "departmentCode")
                     continue;
             else {
-                resultString.append(i);
+//                String appendable = String.valueOf(getScheduleReport.get(i));
+                String appendable =(getScheduleReport.get(i)).toString();
+                resultString.append(appendable);
                 resultString.append(",");
             }
         }
-        finalResultString = resultString.toString();
+//        finalResultString = resultString.toString();
         return finalResultString;
     }
 
