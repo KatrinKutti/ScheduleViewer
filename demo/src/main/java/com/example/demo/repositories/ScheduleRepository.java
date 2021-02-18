@@ -99,7 +99,7 @@ public class ScheduleRepository {
             shift.setDate(resultSet.getDate("date"));
             shift.setStartTime(resultSet.getTime("start_time"));
             shift.setEndTime(resultSet.getTime("end_time"));
-            shift.setWorkedHours(resultSet.getInt("worked_time") / 60.00);
+            shift.setWorkedHours(Math.round(resultSet.getInt("worked_time")/60.00*100)/100.00);
             shift.setName(resultSet.getString("name"));
             return shift;
         }
@@ -152,7 +152,7 @@ public class ScheduleRepository {
             report.setIdNumber(resultSet.getString("id_number"));
             report.setSalaryCode(resultSet.getInt("wh_salary_code"));
             report.setHourlyPay(resultSet.getBigDecimal("hourly_pay"));
-            report.setWorkedHours(resultSet.getDouble("worked_hours"));
+            report.setWorkedHours(Math.round(resultSet.getDouble("worked_hours")*100)/100.00);
             report.setEmptyRow("");
             report.setDepartmentCode(resultSet.getString("department_code"));
             return report;
