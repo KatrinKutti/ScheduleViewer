@@ -18,6 +18,6 @@ public class UserDetailService implements UserDetailsService {
         String password = loginRepository.findPasswordByUserName(idNumber);
         return User.withUsername(idNumber)
                 .password(password)
-                .roles("USER").build();
+                .roles("USER").build(); // kas siia peaks ka lisama Admini rolli?
     }
 }

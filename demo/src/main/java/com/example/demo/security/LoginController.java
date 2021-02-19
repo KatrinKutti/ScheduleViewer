@@ -32,8 +32,7 @@ public class LoginController {
                     .setIssuer("scheduleViewer")
                     .signWith(SignatureAlgorithm.HS256, "test123")
                     .claim("user", idNumber)
-                    .claim("admin", idNumber);
-
+                    .claim("roleId", loginRepository.getRoleId(idNumber));
             return builder.compact();
         } else {
             throw new ScheduleException("Login failed!");
@@ -45,6 +44,7 @@ public class LoginController {
         String encodedPassword = loginRepository.findPasswordByIdNumber(idNumber);
         return passwordEncoder.matches(password, encodedPassword);
     }
+
 
 //    public void savePassword(String password) {
 //        String encodedPassword = passwordEncoder.encode(password);

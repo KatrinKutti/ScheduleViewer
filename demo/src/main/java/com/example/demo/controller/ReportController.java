@@ -18,7 +18,7 @@ public class ReportController {
     private ReportService reportService;
 
     @CrossOrigin
-    @GetMapping("public/getAllEmployeeScheduleDataWithNamesReport")
+    @GetMapping("getAllEmployeeScheduleDataWithNamesReport")
     public ScheduleResponse getAllEmployeeScheduleDataWithNamesReport(@RequestParam("dateFrom") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
                                                                       @RequestParam("dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo){
         return reportService.getAllEmployeeScheduleDataWithNamesReport(dateFrom, dateTo);

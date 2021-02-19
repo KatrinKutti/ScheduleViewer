@@ -25,37 +25,37 @@ public class ScheduleController {
     private JsonToCSVService jsonToCSVService;
 
     @CrossOrigin
-    @PostMapping("public/createEmployee")
+    @PostMapping("createEmployee")
     public String createEmployee(@RequestParam("idNumber") String idNumber, @RequestParam("name") String name,
                                  @RequestParam("departmentCode") String departmentCode,
                                  @RequestParam("hourlyPay") BigDecimal hourlyPay,
-                                 @RequestParam("password") String password) {
-        return scheduleService.createEmployee(idNumber, name, departmentCode, hourlyPay, password);
+                                 @RequestParam("password") String password, @RequestParam ("roleId") int roleId) {
+        return scheduleService.createEmployee(idNumber, name, departmentCode, hourlyPay, password, roleId);
     }
 
     @CrossOrigin
-    @PutMapping("public/updateEmployeeData")
+    @PutMapping("updateEmployeeData")
     public String updateEmployeeData(@RequestParam("updateId") int id, @RequestParam("updateIdNumber") String idNumber,
                                      @RequestParam("updateName") String name, @RequestParam("updateDepartmentCode") String departmentCode,
                                      @RequestParam("updateHourlyPay") BigDecimal hourlyPay,
-                                     @RequestParam("updatePassword") String password){
-        return scheduleService.updateEmployeeData(id, idNumber, name, departmentCode, hourlyPay, password);
+                                     @RequestParam("updatePassword") String password, @RequestParam ("updateRoleId") int roleId){
+        return scheduleService.updateEmployeeData(id, idNumber, name, departmentCode, hourlyPay, password, roleId);
     }
 
     @CrossOrigin
-    @GetMapping("public/getAllEmployeesData")
+    @GetMapping("getAllEmployeesData")
     public List<Employee> getAllEmployeesData(){
         return scheduleService.getAllEmployeesData();
     }
 
     @CrossOrigin
-    @GetMapping("public/getAllEmployeesNames")
+    @GetMapping("getAllEmployeesNames")
     public List<EmployeeNames> allEmployeesNames(){
         return scheduleService.getAllEmployeesNames();
     }
 
     @CrossOrigin
-    @PostMapping("public/createSchedule")
+    @PostMapping("createSchedule")
     public String createSchedule(@RequestParam("name") String name,
                                @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
                                @RequestParam("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
@@ -66,7 +66,7 @@ public class ScheduleController {
     }
 
     @CrossOrigin
-    @PutMapping("public/changeScheduleRow")
+    @PutMapping("changeScheduleRow")
     public String changeScheduleRow(@RequestParam("updateId") int id, @RequestParam("updateName") String name,
                                     @RequestParam("updateDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
                                     @RequestParam("updateStartTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
@@ -75,13 +75,13 @@ public class ScheduleController {
     }
 
     @CrossOrigin
-    @DeleteMapping("public/deleteEmployeeScheduleRow")
+    @DeleteMapping("deleteEmployeeScheduleRow")
     public String deleteEmployeeScheduleRow(@RequestParam("deleteId") int id){
         return scheduleService.deleteEmployeeScheduleRow(id);
     }
 
     @CrossOrigin
-    @GetMapping("public/getEmployeeScheduleData")
+    @GetMapping("getEmployeeScheduleData")
     public List<ScheduleWithNames> getEmployeeScheduleData(@RequestParam("name") String name,
                                                   @RequestParam("dateFrom") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
                                                   @RequestParam("dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo){
@@ -89,28 +89,28 @@ public class ScheduleController {
     }
 
     @CrossOrigin
-    @GetMapping("public/getAllEmployeesScheduleData")
+    @GetMapping("getAllEmployeesScheduleData")
     public List<Schedule> getAllEmployeesScheduleData(@RequestParam("dateFrom") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
                                                       @RequestParam("dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo){
         return scheduleService.getAllEmployeesScheduleData(dateFrom, dateTo);
     }
 
     @CrossOrigin
-    @GetMapping("public/exportData")
+    @GetMapping("exportData")
     public List<ScheduleReport> exportData(@RequestParam("dateFrom") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
                                            @RequestParam("dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo){
         return scheduleService.exportData(dateFrom, dateTo);
     }
 
     @CrossOrigin
-    @GetMapping("public/workHourSumForOneName")
+    @GetMapping("workHourSumForOneName")
     public List<OneEmployeeReport> workHourSumForOneName(@RequestParam("name") String name, @RequestParam("dateFrom") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
                                            @RequestParam("dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo){
         return scheduleService.getWorkHourSumForOneName(name, dateFrom, dateTo);
     }
 
     @CrossOrigin
-    @GetMapping("public/testExportDataToCSV")
+    @GetMapping("testExportDataToCSV")
     public void testExportToCSV(@RequestParam("dateFrom") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
                                 @RequestParam("dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo,
                                 HttpServletResponse response) throws IOException {

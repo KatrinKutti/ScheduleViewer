@@ -18,9 +18,9 @@ public class SpringSecurityConfigurationJWT extends WebSecurityConfigurerAdapter
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
+                .antMatchers().authenticated()
+
                 .antMatchers("/public/**").permitAll()
-//                .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(new JwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         http.csrf().disable();

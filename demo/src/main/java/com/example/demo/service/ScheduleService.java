@@ -25,9 +25,9 @@ public class ScheduleService {
 
     @Transactional
     public String createEmployee(String idNumber, String name, String departmentCode,
-                                 BigDecimal hourlyPay, String password) {
+                                 BigDecimal hourlyPay, String password, int roleId) {
         if (employeeRepository.canAddEmployee(idNumber)) {
-            employeeRepository.createEmployee(idNumber, name, departmentCode, hourlyPay, password);
+            employeeRepository.createEmployee(idNumber, name, departmentCode, hourlyPay, password, roleId);
             return "New employee has been created!";
         }
         return "Entered ID number already in use!";
@@ -40,11 +40,11 @@ public class ScheduleService {
 
     @Transactional
     public String updateEmployeeData(int id, String idNumber, String name, String departmentCode, BigDecimal hourlyPay,
-                                     String password) {
+                                     String password, int roleId) {
         if (employeeRepository.getEmployeeRowId(id) == 0) {
             throw new ScheduleException("Invalid employee system id number!");
         } else {
-            employeeRepository.updateEmployeeData(id, idNumber, name, departmentCode, hourlyPay, password);
+            employeeRepository.updateEmployeeData(id, idNumber, name, departmentCode, hourlyPay, password, roleId);
             return "Employee data updated!";
         }
     }

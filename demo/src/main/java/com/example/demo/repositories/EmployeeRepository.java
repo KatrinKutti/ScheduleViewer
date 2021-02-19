@@ -23,15 +23,16 @@ public class EmployeeRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createEmployee(String idNumber, String name, String departmentCode, BigDecimal hourlyPay,
-                               String password) {
-        String sql = "INSERT INTO employee (name, id_number, department_code, hourly_pay, password) " +
-                "VALUES (:name, :idNumber, :departmentCode, :hourlyPay, :password)";
+                               String password, int roleId) {
+        String sql = "INSERT INTO employee (name, id_number, department_code, hourly_pay, password, user_role) " +
+                "VALUES (:name, :idNumber, :departmentCode, :hourlyPay, :password, :roleId)";
         Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("name", name);
         paraMap.put("idNumber", idNumber);
         paraMap.put("departmentCode", departmentCode);
         paraMap.put("hourlyPay", hourlyPay);
         paraMap.put("password", password);
+        paraMap.put("roleId", roleId);
         jdbcTemplate.update(sql, paraMap);
     }
 
@@ -47,9 +48,9 @@ public class EmployeeRepository {
     }
 
     public void updateEmployeeData(int id, String idNumber, String name, String departmentCode, BigDecimal hourlyPay,
-                                   String password) {
+                                   String password, int roleId) {
         String sql = "UPDATE  employee SET id_number= :id_number, name = :name, " +
-                "department_code = :departmentCode, hourly_pay = :hourlyPay, password = :password WHERE id=:id";
+                "department_code = :departmentCode, hourly_pay = :hourlyPay, password = :password, user_role= :roleId WHERE id=:id";
         Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("id", id);
         paraMap.put("name", name);
@@ -57,6 +58,7 @@ public class EmployeeRepository {
         paraMap.put("departmentCode", departmentCode);
         paraMap.put("hourlyPay", hourlyPay);
         paraMap.put("password", password);
+        paraMap.put("roleId", roleId);
         jdbcTemplate.update(sql, paraMap);
 
     }
