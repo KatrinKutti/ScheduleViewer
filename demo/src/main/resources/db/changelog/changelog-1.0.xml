@@ -90,4 +90,16 @@
         <dropColumn tableName="employee" columnName="salary_code"/>
     </changeSet>
 
+    <changeSet id="2021-02-19vol1" author="Gunnar">
+        <addColumn tableName="employee">
+            <column name="user_role" type="text"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2021-02-19vol2" author="Gunnar">
+        <addColumn tableName="employee">
+            <column name="pw_coded" type="text"></column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

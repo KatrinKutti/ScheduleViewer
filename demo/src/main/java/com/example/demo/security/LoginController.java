@@ -1,14 +1,14 @@
 package com.example.demo.security;
 
 import com.example.demo.errorHandling.ScheduleException;
-import com.example.demo.repositories.ScheduleRepository;
-import com.example.demo.security.LoginCredentials;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
@@ -37,7 +37,6 @@ public class LoginController {
         } else {
             throw new ScheduleException("Login failed!");
         }
-
     }
 
     public boolean validate(String idNumber, String password) {
