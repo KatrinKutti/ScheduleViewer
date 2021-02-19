@@ -15,7 +15,7 @@ public class LoginRepository {
 
     public String findPasswordByIdNumber(String idNumber) {
         Map<String, Object> paramMap = new HashMap<>();
-        String sql = "SELECT password FROM employee WHERE id_number = :id_number";
+        String sql = "SELECT password, role_id FROM employee WHERE id_number = :id_number";
         paramMap.put("id_number", idNumber);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }

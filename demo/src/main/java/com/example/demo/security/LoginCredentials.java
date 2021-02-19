@@ -3,6 +3,15 @@ package com.example.demo.security;
 public class LoginCredentials {
     private String idNumber;
     private String password;
+    private int userRoleId;
+
+    public int getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(int userRoleId) {
+        this.userRoleId = userRoleId;
+    }
 
     public String getIdNumber() {
         return idNumber;
